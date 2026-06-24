@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===========================================================================
+   Harborline Systems — design tokens (aligned to the Harborline brandbook)
+   Colors are HSL channels so Tailwind can compose them with opacity modifiers.
+
+   Two themes:
+   - :root  → Light / "Marble" (default): warm off-white surfaces, graphite text,
+              deep gold accent. Primary CTA = graphite-dark button.
+   - .dark  → "Graphite" (toggle): graphite surfaces, cream text, matte-gold
+              accent. Primary CTA = gold button.
+
+   Brand families: Graphite (g), Marble (m), Silver (s), Gold (gl).
+   =========================================================================== */
+@layer base {
+  :root {
+    /* Light / Marble */
+    --background: 40 20% 97%;        /* m100 #F9F8F6 */
+    --foreground: 220 13% 13%;       /* tl1  #1C1F24 */
+
+    --muted: 36 18% 94%;             /* m200 #F3F1EE */
+    --muted-foreground: 220 14% 34%; /* tl2  #4A5262 */
+
+    --card: 30 33% 99%;              /* m50  #FDFCFB */
+    --card-foreground: 220 13% 13%;
+
+    --border: 36 10% 85%;            /* m400 #DDD9D3 */
+    --input: 36 10% 85%;
+    --ring: 40 40% 34%;              /* gl700 #7A6535 */
+
+    /* Gold accent — text/icons/borders. Deep on light for AA contrast. */
+    --gold: 40 40% 34%;              /* gl700 #7A6535 (AA ~4.5:1 on marble) */
+    --gold-soft: 42 57% 91%;         /* gl100 #F4EFDF (tinted gold surfaces) */
+    --gold-bright: 40 35% 64%;       /* gl400 #C9B47E (decorative, on dark) */
+    --gold-foreground: 220 13% 13%;  /* graphite text on gold buttons */
+
+    /* Primary CTA — theme-aware. Light: graphite-dark button. */
+    --primary: 220 13% 13%;          /* g900 #1C1F24 */
+    --primary-foreground: 43 18% 89%;/* td1  #E8E5DE */
+
+    /* Constant gold for CTAs that sit on the always-dark bands (same in both
+       themes, so the band CTA never collides with --primary). gl500. */
+    --gold-cta: 40 33% 57%;          /* gl500 #B8A06A */
+
+    --destructive: 4 58% 50%;        /* errorBase #C94035 */
+    --destructive-foreground: 0 0% 100%;
+
+    /* Shadow color token so elevation can be tuned per theme. */
+    --shadow-color: 0 0% 0%;
+
+    /* Always-dark "Graphite" accent bands (CTA, hero hub) — constant cream/
+       silver text; surface deepens slightly in dark mode for separation. */
+    --dark: 220 13% 13%;             /* g900 */
+    --dark-foreground: 43 18% 89%;   /* td1 cream */
+    --dark-muted: 218 11% 65%;       /* s300 #9AA1AE */
+    --dark-border: 222 15% 27%;      /* g600 */
+    --dark-card: 222 13% 17%;        /* g800 #252930 */
+
+    --radius: 0.625rem;              /* brand radius (10px) */
+  }
+
+  .dark {
+    /* Graphite */
+    --background: 220 13% 13%;       /* g900 #1C1F24 */
+    --foreground: 43 18% 89%;        /* td1  #E8E5DE */
+
+    --muted: 210 14% 9%;             /* g950 #131619 (deeper alt sections) */
+    --muted-foreground: 218 11% 65%; /* td2  #9AA1AE */
+
+    --card: 222 13% 17%;             /* g800 #252930 (raised) */
+    --card-foreground: 43 18% 89%;
+
+    --border: 222 15% 27%;           /* g600 #3B414F */
+    --input: 228 16% 22%;            /* g700 #2E3340 */
+    --ring: 40 33% 57%;              /* gl500 #B8A06A */
+
+    --gold: 40 33% 57%;              /* gl500 #B8A06A (AA on graphite) */
+    --gold-soft: 41 45% 24%;         /* gl800 #5A4A22 (dark gold chip bg) */
+    --gold-bright: 40 35% 64%;       /* gl400 */
+    --gold-foreground: 220 13% 13%;
+
+    /* Dark: primary CTA = gold button. */
+    --primary: 40 33% 57%;           /* gl500 #B8A06A */
+    --primary-foreground: 220 13% 13%;
+
+    --destructive: 4 67% 63%;        /* errorLight #E06055 */
+
+    --dark: 210 14% 9%;              /* g950 — deeper than page for separation */
+    --dark-card: 222 13% 17%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "cv01", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Headings use the display family with tighter, more confident tracking. */
+  h1, h2, h3, h4 {
+    @apply font-display text-foreground;
+    letter-spacing: -0.02em;
+  }
+
+  /* Consistent, visible focus treatment for keyboard users. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  ::selection {
+    background-color: hsl(var(--gold) / 0.22);
+    color: hsl(var(--foreground));
+  }
+
+  /* Respect users who prefer reduced motion. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Small uppercase label that sits above section headlines. */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold;
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-6 bg-gold/60;
+  }
+
+  /* Generous, consistent vertical rhythm for full-width sections. */
+  .section {
+    @apply py-20 sm:py-24 lg:py-28;
+  }
+
+  /* Readable measure for long-form copy. */
+  .prose-measure {
+    @apply max-w-prose text-base leading-relaxed text-muted-foreground;
+  }
+}
+
+@layer utilities {
+  /* Soft layered horizon gradient — a subtle nod to "Harborline" without imagery. */
+  .bg-horizon {
+    background-image:
+      radial-gradient(120% 90% at 50% -10%, hsl(var(--gold-soft) / 0.55) 0%, transparent 55%),
+      linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--muted) / 0.5) 100%);
+  }
+
+  .bg-dark-gradient {
+    background-image:
+      radial-gradient(110% 80% at 80% -20%, hsl(var(--gold) / 0.18) 0%, transparent 45%),
+      linear-gradient(160deg, hsl(var(--dark-card)) 0%, hsl(var(--dark)) 60%, hsl(var(--dark) / 0.92) 100%);
+  }
+
+  /* Fine layered grid used behind hero / system visuals. */
+  .bg-fine-grid {
+    background-size: 32px 32px;
+    @apply bg-grid-faint;
+    mask-image: radial-gradient(80% 70% at 50% 30%, black 30%, transparent 100%);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
