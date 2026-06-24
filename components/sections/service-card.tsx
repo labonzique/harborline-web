@@ -40,7 +40,7 @@ export function ServiceCard({ service, className }: ServiceCardProps) {
         {service.previewExamples.map((example) => (
           <li
             key={example}
-            className="rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground"
+            className="rounded-md border border-border bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground"
           >
             {example}
           </li>

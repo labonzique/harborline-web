@@ -106,12 +106,12 @@ export function ServiceAccordion() {
                     </ul>
                   </div>
 
-                  <div className="rounded-xl border border-gold/20 bg-gold-soft/50 p-5">
+                  <div className="rounded-lg border border-gold/20 bg-gold-soft p-5">
                     <h4 className="flex items-center gap-2 text-sm font-semibold text-foreground">
                       <Sparkles className="h-4 w-4 text-gold" aria-hidden />
                       What better looks like
                     </h4>
-                    <p className="mt-2.5 text-sm leading-relaxed text-foreground/80">
+                    <p className="mt-2.5 text-sm leading-relaxed text-foreground/90">
                       {service.whatBetterLooksLike}
                     </p>
                   </div>

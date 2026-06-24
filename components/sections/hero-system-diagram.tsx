@@ -112,7 +112,7 @@ export function HeroSystemDiagram({ className }: { className?: string }) {
                 >
                   <Icon className="h-4 w-4" aria-hidden />
                 </span>
-                <span className="text-sm font-medium text-foreground">
+                <span className="hidden text-sm font-medium text-foreground sm:inline">
                   {node.label}
                 </span>
               </div>

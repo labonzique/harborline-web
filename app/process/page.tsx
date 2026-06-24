@@ -63,7 +63,7 @@ export default function ProcessPage() {
 
           {/* Local onsite callout */}
           <Reveal className="mt-10">
-            <div className="flex items-start gap-4 rounded-2xl border border-gold/25 bg-gold-soft/40 p-6">
+            <div className="flex items-start gap-4 rounded-2xl border border-gold/25 bg-gold-soft p-6">
               <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold-bright text-dark">
                 <MapPin className="h-5 w-5" aria-hidden />
               </span>

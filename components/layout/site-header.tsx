@@ -68,7 +68,7 @@ export function SiteHeader() {
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
               className={cn(
-                "relative rounded-full px-4 py-2 text-sm font-medium transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                "relative rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:bg-foreground/5 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                 isActive(item.href) ? "text-foreground" : "text-muted-foreground"
               )}
             >
@@ -92,7 +92,7 @@ export function SiteHeader() {
           <ThemeToggle />
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-card text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-card text-foreground transition-colors hover:bg-foreground/5 hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -113,10 +113,13 @@ export function SiteHeader() {
       >
         <div
           className={cn(
+            // visibility flips with a transition so the closed menu is removed
+            // from the tab order + a11y tree (no focus leak) while preserving
+            // the slide/fade animation.
             "absolute inset-x-0 top-20 origin-top border-b border-border bg-background/95 backdrop-blur-md transition-all duration-200",
             menuOpen
-              ? "translate-y-0 opacity-100"
-              : "-translate-y-2 opacity-0"
+              ? "visible translate-y-0 opacity-100"
+              : "invisible -translate-y-2 opacity-0"
           )}
         >
           <nav
@@ -129,10 +132,10 @@ export function SiteHeader() {
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 className={cn(
-                  "rounded-xl px-4 py-3 text-base font-medium transition-colors",
+                  "rounded-lg px-4 py-3 text-base font-medium transition-colors",
                   isActive(item.href)
-                    ? "bg-muted text-foreground"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                    ? "bg-foreground/[0.07] text-foreground"
+                    : "text-muted-foreground hover:bg-foreground/5 hover:text-foreground"
                 )}
               >
                 {item.label}

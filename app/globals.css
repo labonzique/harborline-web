@@ -85,7 +85,7 @@
     --primary: 40 33% 57%;           /* gl500 #B8A06A */
     --primary-foreground: 220 13% 13%;
 
-    --destructive: 4 67% 63%;        /* errorLight #E06055 */
+    --destructive: 6 78% 68%;        /* brightened errorLight for AA on g800 cards */
 
     --dark: 210 14% 9%;              /* g950 — deeper than page for separation */
     --dark-card: 222 13% 17%;
@@ -108,9 +108,13 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Headings use the display family with tighter, more confident tracking. */
+  /* Headings use the display family with tighter, more confident tracking.
+     Color is inherited (not forced to --foreground) so headings placed on the
+     always-dark bands take the cream --dark-foreground instead of going
+     dark-on-dark in the light theme. */
   h1, h2, h3, h4 {
-    @apply font-display text-foreground;
+    @apply font-display;
+    color: inherit;
     letter-spacing: -0.02em;
   }
 

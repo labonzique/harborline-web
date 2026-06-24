@@ -37,13 +37,13 @@ export default function ServicesPage() {
 
           {/* Not sure where to start */}
           <Reveal className="mt-12">
-            <div className="overflow-hidden rounded-3xl border border-gold/25 bg-gold-soft/40 p-8 sm:p-10">
+            <div className="overflow-hidden rounded-3xl border border-gold/25 bg-gold-soft p-8 sm:p-10">
               <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                 <div className="max-w-2xl">
                   <h2 className="text-2xl font-semibold sm:text-3xl">
                     Not sure where to start?
                   </h2>
-                  <p className="mt-3 text-pretty leading-relaxed text-muted-foreground">
+                  <p className="mt-3 text-pretty leading-relaxed text-foreground/80">
                     Most projects begin with a free consultation and a high-level
                     audit. We look at what you have, find where time and leads are
                     leaking, and help you decide what to clean up first — no
