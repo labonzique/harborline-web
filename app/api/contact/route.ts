@@ -40,7 +40,7 @@ export async function POST(request: Request) {
   const toEmail = process.env.CONTACT_TO_EMAIL || "hello@harborlinesystems.com";
   const fromEmail =
     process.env.CONTACT_FROM_EMAIL || "website@harborlinesystems.com";
-  const subject = `New consultation request — ${data.businessName}`;
+  const subject = `New audit request — ${data.businessName}`;
   const text = formatSubmission(data);
 
   try {

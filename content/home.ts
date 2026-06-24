@@ -50,6 +50,17 @@ export const positioningCards: PositioningCard[] = [
   },
 ];
 
+/**
+ * Trust signals shown in the strip below the hero. All four are confirmed true
+ * by the owner (not aspirational placeholders).
+ */
+export const trustSignals: string[] = [
+  "No lock-in contracts",
+  "US-based support",
+  "48-hour response SLA",
+  "HIPAA-ready workflows",
+];
+
 /** Local-first selling points for the Home local section. */
 export const localPoints: string[] = [
   "Serving Greater Philadelphia and the surrounding suburbs",

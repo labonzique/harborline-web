@@ -21,7 +21,7 @@ export const siteConfig = {
 } as const;
 
 /**
- * Booking link for "Book a Free Consultation".
+ * Booking link for "Book a Free Audit".
  * Set NEXT_PUBLIC_BOOKING_URL to a Calendly / Cal.com link in production.
  * Falls back to the on-site contact form when not configured.
  */
@@ -51,7 +51,7 @@ export const footerServiceLinks: NavItem[] = [
 
 export const ctaCopy = {
   primary: {
-    label: "Book a Free Consultation",
+    label: "Book a Free Audit",
     href: "/contact",
   },
   secondary: {

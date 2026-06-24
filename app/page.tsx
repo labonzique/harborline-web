@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  Check,
   MapPin,
   Sparkles,
   ClipboardCheck,
@@ -24,6 +25,7 @@ import {
   problemPoints,
   positioningCards,
   localPoints,
+  trustSignals,
 } from "@/content/home";
 import { ctaCopy } from "@/lib/site";
 
@@ -67,8 +69,8 @@ export default function HomePage() {
               </div>
 
               <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
-                Free first consultation. High-level audit included. Local onsite
-                visits available in Greater Philadelphia.
+                Free first audit, no obligation. Local onsite visits available in
+                Greater Philadelphia.
               </p>
             </Reveal>
 
@@ -76,6 +78,23 @@ export default function HomePage() {
               <HeroSystemDiagram />
             </Reveal>
           </div>
+        </Container>
+      </section>
+
+      {/* ---------------------------------------------------------- Trust strip */}
+      <section className="border-y border-border bg-muted/40">
+        <Container size="wide">
+          <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 py-5 sm:gap-x-12">
+            {trustSignals.map((signal) => (
+              <li
+                key={signal}
+                className="flex items-center gap-2 text-sm font-medium text-foreground/80"
+              >
+                <Check className="h-4 w-4 shrink-0 text-gold" aria-hidden />
+                {signal}
+              </li>
+            ))}
+          </ul>
         </Container>
       </section>
 
@@ -175,7 +194,7 @@ export default function HomePage() {
               <SectionHeader
                 eyebrow="Demo-first approach"
                 title="See the direction before you commit."
-                description="For the right projects, we begin with a consultation, a high-level audit, and a practical demo direction — so you can see what better might look like before committing to a full build."
+                description="For the right projects, we begin with a high-level audit and a practical demo direction — so you can see what better might look like before committing to a full build."
               />
               <p className="mt-6 max-w-xl text-pretty leading-relaxed text-muted-foreground">
                 Depending on the project, we may create a lightweight demo,

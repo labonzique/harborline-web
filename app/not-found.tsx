@@ -19,7 +19,7 @@ export default function NotFound() {
             Back to home
           </Button>
           <Button href="/contact" variant="secondary" size="lg">
-            Book a Free Consultation
+            Book a Free Audit
           </Button>
         </div>
       </Container>

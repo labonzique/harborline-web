@@ -10,17 +10,17 @@ import { siteConfig, bookingUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Book a free consultation with Harborline Systems. Tell us what you want to clean up — website, lead flow, CRM, reporting, or automation.",
+    "Book a free audit with Harborline Systems. Tell us what you want to clean up — website, lead flow, CRM, reporting, or automation.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact | Harborline Systems",
-    description: "Book a free consultation with Harborline Systems.",
+    description: "Book a free audit with Harborline Systems.",
     url: "/contact",
   },
 };
 
 const perks = [
-  "Free first consultation",
+  "Free first audit, no obligation",
   "High-level audit included",
   "Demo direction available for the right projects",
   "Local onsite visits available in Greater Philadelphia",
@@ -83,7 +83,7 @@ export default function ContactPage() {
                         variant="primary"
                         className="mt-5 w-full"
                       >
-                        Book a Free Consultation
+                        Book a Free Audit
                       </Button>
                     </>
                   ) : (

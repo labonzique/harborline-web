@@ -87,7 +87,7 @@ export function ContactForm() {
         <h2 className="mt-5 text-2xl font-semibold">Thanks — we got it.</h2>
         <p className="mx-auto mt-3 max-w-md text-pretty leading-relaxed text-foreground/80">
           We received your request and will review what you shared. If it looks
-          like a fit, we will follow up to schedule a free consultation.
+          like a fit, we will follow up to schedule your free audit.
         </p>
       </div>
     );
@@ -273,13 +273,13 @@ export function ContactForm() {
             </>
           ) : (
             <>
-              Request Free Consultation
+              Request Free Audit
               <ArrowRight className="h-4 w-4" aria-hidden />
             </>
           )}
         </button>
         <p className="text-xs text-muted-foreground">
-          No pressure. The first consultation and high-level audit are free.
+          No pressure. The first audit is free — no obligation.
         </p>
       </div>
     </form>

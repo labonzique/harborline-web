@@ -22,7 +22,7 @@ export function CTASection({
   eyebrow = "Start here",
   title = "Bring us the messy version.",
   body = "You do not need a perfect brief. Tell us what is slow, scattered, outdated, or unclear. We will help identify what should be cleaned up first.",
-  supportText = "No pressure. The first consultation and high-level audit are free.",
+  supportText = "No pressure. The first audit is free — no obligation.",
   showSecondary = true,
 }: CTASectionProps) {
   return (

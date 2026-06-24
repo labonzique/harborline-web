@@ -44,8 +44,8 @@ export default function ServicesPage() {
                     Not sure where to start?
                   </h2>
                   <p className="mt-3 text-pretty leading-relaxed text-foreground/80">
-                    Most projects begin with a free consultation and a high-level
-                    audit. We look at what you have, find where time and leads are
+                    Most projects begin with a free, high-level audit. We look at
+                    what you have, find where time and leads are
                     leaking, and help you decide what to clean up first — no
                     commitment required.
                   </p>
