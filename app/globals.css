@@ -39,10 +39,17 @@
     /* Primary CTA — theme-aware. Light: graphite-dark button. */
     --primary: 220 13% 13%;          /* g900 #1C1F24 */
     --primary-foreground: 43 18% 89%;/* td1  #E8E5DE */
+    /* Soft gradient stops for the primary CTA (subtle top sheen → base).
+       Light = graphite ramp (g700 → g900). */
+    --primary-from: 226 16% 22%;     /* g700 #2E3340 */
+    --primary-to: 220 13% 13%;       /* g900 #1C1F24 */
 
     /* Constant gold for CTAs that sit on the always-dark bands (same in both
        themes, so the band CTA never collides with --primary). gl500. */
     --gold-cta: 40 33% 57%;          /* gl500 #B8A06A */
+    /* Metallic gold gradient stops (gl400 → gl600), constant in both themes. */
+    --gold-cta-from: 40 35% 64%;     /* gl400 #C9B47E */
+    --gold-cta-to: 41 32% 47%;       /* gl600 #A08A52 */
 
     --destructive: 4 58% 50%;        /* errorBase #C94035 */
     --destructive-foreground: 0 0% 100%;
@@ -81,9 +88,11 @@
     --gold-bright: 40 35% 64%;       /* gl400 */
     --gold-foreground: 220 13% 13%;
 
-    /* Dark: primary CTA = gold button. */
+    /* Dark: primary CTA = gold button → metallic gold gradient (gl400 → gl600). */
     --primary: 40 33% 57%;           /* gl500 #B8A06A */
     --primary-foreground: 220 13% 13%;
+    --primary-from: 40 35% 64%;      /* gl400 #C9B47E */
+    --primary-to: 41 32% 47%;        /* gl600 #A08A52 */
 
     --destructive: 6 78% 68%;        /* brightened errorLight for AA on g800 cards */
 
@@ -163,6 +172,37 @@
   /* Readable measure for long-form copy. */
   .prose-measure {
     @apply max-w-prose text-base leading-relaxed text-muted-foreground;
+  }
+
+  /* ---- Button surfaces ----------------------------------------------------
+     Subtle, brand-derived gradients so CTAs read as tactile rather than flat.
+     The solid color is kept as a fallback under the gradient. */
+  .bg-primary-grad {
+    background-color: hsl(var(--primary));
+    background-image: linear-gradient(
+      165deg,
+      hsl(var(--primary-from)) 0%,
+      hsl(var(--primary-to)) 100%
+    );
+  }
+
+  .bg-gold-grad {
+    background-color: hsl(var(--gold-cta));
+    background-image: linear-gradient(
+      165deg,
+      hsl(var(--gold-cta-from)) 0%,
+      hsl(var(--gold-cta-to)) 100%
+    );
+  }
+
+  /* Light, warm depth for outline/secondary buttons (card → muted). */
+  .bg-secondary-grad {
+    background-color: hsl(var(--card));
+    background-image: linear-gradient(
+      180deg,
+      hsl(var(--card)) 0%,
+      hsl(var(--muted)) 140%
+    );
   }
 }
 

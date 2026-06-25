@@ -370,7 +370,7 @@ function Chip({
       className={cn(
         "rounded-lg border px-4 py-2 text-sm font-medium transition-all duration-150 hover:-translate-y-px active:translate-y-0 active:scale-95 motion-reduce:transform-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
         selected
-          ? "border-primary bg-primary text-primary-foreground shadow-soft"
+          ? "border-primary bg-primary-grad text-primary-foreground shadow-soft"
           : "border-border bg-card text-muted-foreground hover:border-gold/40 hover:text-foreground"
       )}
     >

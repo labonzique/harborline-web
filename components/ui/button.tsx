@@ -24,14 +24,15 @@ const sheen =
 
 const variants: Record<Variant, string> = {
   // Theme-aware primary CTA: graphite-dark button on light, gold button on dark.
+  // Subtle gradient + a faint hover brightness so it reads tactile, not flat.
   // Use on normal (light/marble or graphite) surfaces — NOT on the dark bands.
-  primary: `bg-primary text-primary-foreground shadow-soft hover:shadow-card ${sheen}`,
-  // Constant gold CTA — for the always-dark bands, where theme-aware --primary
-  // would collide with the graphite background. Same gold in both themes.
-  goldCta: `bg-gold-cta text-gold-foreground shadow-gold hover:shadow-lift focus-visible:ring-offset-dark ${sheen}`,
-  // Light outline button for light/marble backgrounds.
+  primary: `bg-primary-grad text-primary-foreground shadow-soft hover:shadow-card hover:brightness-[1.08] motion-reduce:hover:brightness-100 ${sheen}`,
+  // Constant metallic-gold CTA — for the always-dark bands, where theme-aware
+  // --primary would collide with the graphite background. Same gold both themes.
+  goldCta: `bg-gold-grad text-gold-foreground shadow-gold hover:shadow-lift hover:brightness-[1.05] motion-reduce:hover:brightness-100 focus-visible:ring-offset-dark ${sheen}`,
+  // Outline / secondary button with a soft warm-depth gradient.
   secondary:
-    "border border-border bg-card text-foreground shadow-soft hover:border-gold/40 hover:bg-foreground/5",
+    "border border-border bg-secondary-grad text-foreground shadow-soft hover:border-gold/40 hover:shadow-card hover:brightness-[1.02] motion-reduce:hover:brightness-100",
   ghost: "text-foreground hover:bg-foreground/5",
   // Outline button for the always-dark graphite bands.
   outlineLight:
