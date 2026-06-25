@@ -14,13 +14,23 @@ import { cn } from "@/lib/utils";
 export function SiteHeader() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = React.useState(false);
+  const [progress, setProgress] = React.useState(0);
   const [menuOpen, setMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 8);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? Math.min(1, y / max) : 0);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   // Close the mobile menu on route change.
@@ -48,10 +58,24 @@ export function SiteHeader() {
           : "border-b border-transparent bg-background/0"
       )}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
+      {/* Reading-progress hairline */}
+      <span
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-0.5 origin-left bg-gold/70 transition-transform duration-150 ease-out motion-reduce:hidden"
+        style={{ transform: `scaleX(${progress})` }}
+      />
+      <div
+        className={cn(
+          "mx-auto flex max-w-7xl items-center justify-between px-5 transition-[height] duration-300 sm:px-6 lg:px-8",
+          scrolled ? "h-16" : "h-20"
+        )}
+      >
         <Link
           href="/"
-          className="rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className={cn(
+            "rounded-lg transition-transform duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+            scrolled && "scale-[0.94]"
+          )}
           aria-label="Harborline Systems — home"
         >
           <Logo />
@@ -68,14 +92,15 @@ export function SiteHeader() {
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
               className={cn(
-                "relative rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:bg-foreground/5 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                isActive(item.href) ? "text-foreground" : "text-muted-foreground"
+                "relative rounded-lg px-4 py-2 text-sm font-medium transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                // animated gold underline: grows on hover, stays for the active page
+                "after:absolute after:inset-x-4 after:bottom-1 after:h-px after:origin-center after:scale-x-0 after:bg-gold after:transition-transform after:duration-300 hover:after:scale-x-100",
+                isActive(item.href)
+                  ? "text-foreground after:scale-x-100"
+                  : "text-muted-foreground"
               )}
             >
               {item.label}
-              {isActive(item.href) ? (
-                <span className="absolute inset-x-4 -bottom-px h-px bg-gold" />
-              ) : null}
             </Link>
           ))}
         </nav>
@@ -116,7 +141,7 @@ export function SiteHeader() {
             // visibility flips with a transition so the closed menu is removed
             // from the tab order + a11y tree (no focus leak) while preserving
             // the slide/fade animation.
-            "absolute inset-x-0 top-20 origin-top border-b border-border bg-background/95 backdrop-blur-md transition-all duration-200",
+            "absolute inset-x-0 top-full origin-top border-b border-border bg-background/95 backdrop-blur-md transition-all duration-200",
             menuOpen
               ? "visible translate-y-0 opacity-100"
               : "invisible -translate-y-2 opacity-0"
@@ -126,13 +151,17 @@ export function SiteHeader() {
             className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-5 sm:px-6"
             aria-label="Mobile"
           >
-            {mainNav.map((item) => (
+            {mainNav.map((item, i) => (
               <Link
                 key={item.href}
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
+                style={{ transitionDelay: menuOpen ? `${i * 40 + 60}ms` : "0ms" }}
                 className={cn(
-                  "rounded-lg px-4 py-3 text-base font-medium transition-colors",
+                  "rounded-lg px-4 py-3 text-base font-medium transition-all duration-300",
+                  menuOpen
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-1 opacity-0",
                   isActive(item.href)
                     ? "bg-foreground/[0.07] text-foreground"
                     : "text-muted-foreground hover:bg-foreground/5 hover:text-foreground"

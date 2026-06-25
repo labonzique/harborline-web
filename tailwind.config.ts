@@ -109,13 +109,49 @@ const config: Config = {
         "dash-flow": {
           to: { strokeDashoffset: "-16" },
         },
+        // Gentle vertical drift for the diagram nodes.
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-5px)" },
+        },
+        // Slow breathing glow behind the hub.
+        breathe: {
+          "0%, 100%": { opacity: "0.3", transform: "scale(0.96)" },
+          "50%": { opacity: "0.65", transform: "scale(1.06)" },
+        },
+        // Entrance pop for nodes / cards.
+        "pop-in": {
+          from: { opacity: "0", transform: "scale(0.85)" },
+          to: { opacity: "1", transform: "scale(1)" },
+        },
+        // Expanding ring on the accent nodes.
+        "pulse-ring": {
+          "0%": { boxShadow: "0 0 0 0 hsl(var(--gold) / 0.45)" },
+          "70%, 100%": { boxShadow: "0 0 0 10px hsl(var(--gold) / 0)" },
+        },
+        // Light sweep across primary buttons on hover.
+        sheen: {
+          from: { transform: "translateX(-130%) skewX(-12deg)" },
+          to: { transform: "translateX(130%) skewX(-12deg)" },
+        },
+        // Orchestrated hero entrance (rise + fade).
+        rise: {
+          from: { opacity: "0", transform: "translateY(14px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.25s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.5s ease-out both",
         "pulse-soft": "pulse-soft 4s ease-in-out infinite",
-        "dash-flow": "dash-flow 1.2s linear infinite",
+        "dash-flow": "dash-flow 1.4s linear infinite",
+        float: "float 6s ease-in-out infinite",
+        breathe: "breathe 5s ease-in-out infinite",
+        "pop-in": "pop-in 0.6s cubic-bezier(0.21,0.5,0.27,1) both",
+        "pulse-ring": "pulse-ring 2.8s ease-out infinite",
+        sheen: "sheen 0.9s ease-out",
+        rise: "rise 0.6s cubic-bezier(0.21,0.5,0.27,1) both",
       },
     },
   },

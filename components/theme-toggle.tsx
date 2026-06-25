@@ -39,16 +39,31 @@ export function ThemeToggle({ className }: { className?: string }) {
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
       title={isDark ? "Switch to light theme" : "Switch to dark theme"}
       className={cn(
-        "inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-card text-foreground transition-colors hover:bg-muted hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+        "group relative inline-flex h-11 w-11 items-center justify-center overflow-hidden rounded-lg border border-border bg-card text-foreground transition-colors hover:bg-foreground/5 hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
         className
       )}
     >
-      {/* Render a stable icon until mounted to avoid hydration mismatch. */}
-      {mounted && isDark ? (
-        <Sun className="h-5 w-5" aria-hidden />
-      ) : (
-        <Moon className="h-5 w-5" aria-hidden />
-      )}
+      {/* Both icons are stacked; they rotate + crossfade between states. Before
+          mount, both sit at their light-theme positions (Moon visible) to match
+          the SSR markup and avoid a hydration flash. */}
+      <Moon
+        className={cn(
+          "absolute h-5 w-5 transition-all duration-300 ease-out",
+          mounted && isDark
+            ? "rotate-90 scale-0 opacity-0"
+            : "rotate-0 scale-100 opacity-100"
+        )}
+        aria-hidden
+      />
+      <Sun
+        className={cn(
+          "absolute h-5 w-5 transition-all duration-300 ease-out",
+          mounted && isDark
+            ? "rotate-0 scale-100 opacity-100"
+            : "-rotate-90 scale-0 opacity-0"
+        )}
+        aria-hidden
+      />
     </button>
   );
 }

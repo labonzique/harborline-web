@@ -41,25 +41,39 @@ export default function HomePage() {
         />
         <Container size="wide" className="relative">
           <div className="grid items-center gap-14 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:py-24">
-            <Reveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-soft backdrop-blur-sm">
+            {/* Orchestrated, staggered hero entrance (CSS-only; collapses to
+                instant under prefers-reduced-motion). */}
+            <div className="min-w-0">
+              <span
+                className="inline-flex animate-rise items-center gap-2 rounded-full border border-border bg-card/70 px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-soft backdrop-blur-sm"
+                style={{ animationDelay: "0.05s" }}
+              >
                 <MapPin className="h-3.5 w-3.5 text-gold" aria-hidden />
                 Digital operations agency · Greater Philadelphia
               </span>
 
-              <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3.6rem]">
+              <h1
+                className="mt-6 animate-rise text-balance text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3.6rem]"
+                style={{ animationDelay: "0.12s" }}
+              >
                 Less digital clutter.{" "}
                 <span className="text-gold">More time</span> to run your
                 business.
               </h1>
 
-              <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl">
+              <p
+                className="mt-6 max-w-xl animate-rise text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl"
+                style={{ animationDelay: "0.2s" }}
+              >
                 Harborline Systems helps service businesses turn websites, leads,
                 CRMs, records, reporting, and automation into one calmer, cleaner
                 operating layer.
               </p>
 
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <div
+                className="mt-9 flex animate-rise flex-col gap-3 sm:flex-row"
+                style={{ animationDelay: "0.28s" }}
+              >
                 <Button href={ctaCopy.primary.href} variant="primary" size="lg">
                   {ctaCopy.primary.label}
                 </Button>
@@ -68,11 +82,14 @@ export default function HomePage() {
                 </Button>
               </div>
 
-              <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
+              <p
+                className="mt-6 max-w-md animate-rise text-sm leading-relaxed text-muted-foreground"
+                style={{ animationDelay: "0.36s" }}
+              >
                 Free first audit, no obligation. Local onsite visits available in
                 Greater Philadelphia.
               </p>
-            </Reveal>
+            </div>
 
             <Reveal delay={0.12} className="lg:pl-6">
               <HeroSystemDiagram />

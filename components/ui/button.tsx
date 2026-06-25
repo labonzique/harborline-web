@@ -13,17 +13,22 @@ type Variant =
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-lg font-medium tracking-tight transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-75 whitespace-nowrap select-none active:scale-[0.98]";
+  // Tactile base: subtle hover lift, crisp active press, and a trailing-icon
+  // nudge on hover. `group`/`overflow-hidden` enable the per-variant sheen.
+  "group relative overflow-hidden inline-flex items-center justify-center gap-2 rounded-lg font-medium tracking-tight transition-[transform,box-shadow,background-color,border-color,opacity,color] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-75 disabled:hover:translate-y-0 whitespace-nowrap select-none hover:-translate-y-px active:translate-y-0 active:scale-[0.98] motion-reduce:transform-none [&>svg:last-child]:transition-transform [&>svg:last-child]:duration-200 hover:[&>svg:last-child]:translate-x-0.5";
+
+// Subtle light sweep across solid CTAs on hover (a gloss highlight, not a color
+// change). Self-resets on un-hover via the left transition.
+const sheen =
+  "before:pointer-events-none before:absolute before:inset-y-0 before:-left-full before:w-1/3 before:-skew-x-12 before:bg-white/15 before:transition-[left] before:duration-700 before:ease-out hover:before:left-[160%] motion-reduce:before:hidden";
 
 const variants: Record<Variant, string> = {
   // Theme-aware primary CTA: graphite-dark button on light, gold button on dark.
   // Use on normal (light/marble or graphite) surfaces — NOT on the dark bands.
-  primary:
-    "bg-primary text-primary-foreground shadow-soft hover:opacity-90 hover:shadow-card",
+  primary: `bg-primary text-primary-foreground shadow-soft hover:shadow-card ${sheen}`,
   // Constant gold CTA — for the always-dark bands, where theme-aware --primary
   // would collide with the graphite background. Same gold in both themes.
-  goldCta:
-    "bg-gold-cta text-gold-foreground shadow-gold hover:opacity-90 focus-visible:ring-offset-dark",
+  goldCta: `bg-gold-cta text-gold-foreground shadow-gold hover:shadow-lift focus-visible:ring-offset-dark ${sheen}`,
   // Light outline button for light/marble backgrounds.
   secondary:
     "border border-border bg-card text-foreground shadow-soft hover:border-gold/40 hover:bg-foreground/5",

@@ -4,6 +4,7 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { MobileCtaBar } from "@/components/layout/mobile-cta-bar";
 import { siteConfig } from "@/lib/site";
 
 const inter = Inter({
@@ -97,6 +98,7 @@ export default function RootLayout({
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
+        <MobileCtaBar />
       </body>
     </html>
   );
