@@ -1,0 +1,85 @@
+{
+  "pkg": "harborline-systems",
+  "globalName": "Harborline",
+  "shape": "package",
+  "projectId": "4fd7ba6d-ff32-4251-adce-49c1ca47df8c",
+  "srcDir": "components",
+  "entry": ".design-sync/ds-entry.tsx",
+  "tsconfig": ".design-sync/tsconfig.ds.json",
+  "cssEntry": ".design-sync/styles.compiled.css",
+  "buildCmd": "node_modules/.bin/tailwindcss -c tailwind.config.ts -i app/globals.css -o .design-sync/styles.tw.css --content './app/**/*.{ts,tsx},./components/**/*.{ts,tsx},./content/**/*.{ts,tsx},./lib/**/*.{ts,tsx},./.design-sync/previews/**/*.tsx' && cat .design-sync/brand-fonts.css .design-sync/styles.tw.css > .design-sync/styles.compiled.css",
+  "overrides": {
+    "SiteFooter": {
+      "cardMode": "column"
+    },
+    "SiteHeader": {
+      "cardMode": "column"
+    },
+    "Reveal": {
+      "cardMode": "column"
+    },
+    "FeatureGrid": {
+      "cardMode": "column"
+    },
+    "ProcessStep": {
+      "cardMode": "column"
+    },
+    "ServiceCard": {
+      "cardMode": "column"
+    },
+    "TrustCard": {
+      "cardMode": "column"
+    }
+  },
+  "componentSrcMap": {
+    "Button": "components/ui/button.tsx",
+    "Accordion": "components/ui/accordion.tsx",
+    "AccordionItem": "components/ui/accordion.tsx",
+    "AccordionTrigger": "components/ui/accordion.tsx",
+    "AccordionContent": "components/ui/accordion.tsx",
+    "ServiceCard": "components/sections/service-card.tsx",
+    "TrustCard": "components/sections/trust-card.tsx",
+    "FeatureGrid": "components/sections/feature-grid.tsx",
+    "ProcessStep": "components/sections/process-step.tsx",
+    "PageHero": "components/sections/page-hero.tsx",
+    "SectionHeader": "components/sections/section-header.tsx",
+    "CTASection": "components/sections/cta-section.tsx",
+    "LocalCallout": "components/sections/local-callout.tsx",
+    "ServiceAccordion": "components/sections/service-accordion.tsx",
+    "HeroSystemDiagram": "components/sections/hero-system-diagram.tsx",
+    "Container": "components/layout/container.tsx",
+    "Logo": "components/layout/logo.tsx",
+    "SiteHeader": "components/layout/site-header.tsx",
+    "SiteFooter": "components/layout/site-footer.tsx",
+    "MobileCtaBar": "components/layout/mobile-cta-bar.tsx",
+    "Reveal": "components/motion/reveal.tsx",
+    "ThemeToggle": "components/theme-toggle.tsx",
+    "ContactForm": "components/contact/contact-form.tsx"
+  },
+  "dtsPropsFor": {
+    "Button": "  /** Visual style — defaults to \"primary\". */\n  variant?: \"primary\" | \"goldCta\" | \"secondary\" | \"ghost\" | \"outlineLight\" | \"solidLight\";\n  /** Size — defaults to \"md\". */\n  size?: \"sm\" | \"md\" | \"lg\";\n  /** When set, renders a link (<a>) instead of a <button>. */\n  href?: string;\n  className?: string;\n  children: React.ReactNode;\n  disabled?: boolean;",
+    "Accordion": "  /** \"single\" = one panel open at a time; \"multiple\" = many. */\n  type: \"single\" | \"multiple\";\n  /** Allow closing the open item (type=\"single\"). */\n  collapsible?: boolean;\n  /** Initially-open item value(s). */\n  defaultValue?: string | string[];\n  value?: string | string[];\n  onValueChange?: (value: string | string[]) => void;\n  className?: string;\n  children: React.ReactNode;",
+    "AccordionItem": "  /** Unique value identifying this panel. */\n  value: string;\n  disabled?: boolean;\n  className?: string;\n  children: React.ReactNode;",
+    "AccordionTrigger": "  className?: string;\n  children: React.ReactNode;",
+    "AccordionContent": "  className?: string;\n  children: React.ReactNode;",
+    "ServiceCard": "  /** Service content (from content/services). */\n  service: {\n    id: string;\n    name: string;\n    icon: React.ComponentType<{ className?: string }>;\n    summary: string;\n    previewExamples: string[];\n  };\n  className?: string;",
+    "TrustCard": "  /** Headline statement. */\n  title: string;\n  /** Supporting text under the title. */\n  body: React.ReactNode;\n  /** Optional icon (lucide). Cards without an icon get a gold left-border. */\n  icon?: React.ComponentType<{ className?: string }>;\n  /** Optional numeric marker (e.g. \"01\") for numbered belief lists. */\n  marker?: string;\n  className?: string;",
+    "FeatureGrid": "  /** The cards to lay out. */\n  children: React.ReactNode;\n  /** Columns at the large breakpoint — defaults to 3. */\n  columns?: 2 | 3 | 4;\n  /** Stagger each child's reveal animation — defaults to true. */\n  stagger?: boolean;\n  className?: string;",
+    "ProcessStep": "  /** Step content (from content/process). */\n  step: {\n    number: string;\n    label: string;\n    title: string;\n    description: string;\n    icon: React.ComponentType<{ className?: string }>;\n  };\n  /** Hides the connector line below the final step. */\n  isLast?: boolean;\n  /** Position, used to stagger the reveal. */\n  index?: number;",
+    "PageHero": "  /** Small kicker line above the title. */\n  eyebrow: string;\n  title: React.ReactNode;\n  description?: React.ReactNode;\n  /** Optional CTA row or extra content below the description. */\n  children?: React.ReactNode;\n  className?: string;",
+    "SectionHeader": "  eyebrow?: string;\n  title: React.ReactNode;\n  description?: React.ReactNode;\n  /** Text alignment — defaults to \"left\". */\n  align?: \"left\" | \"center\";\n  /** Heading level — defaults to \"h2\". */\n  as?: \"h2\" | \"h3\";\n  className?: string;\n  titleClassName?: string;",
+    "CTASection": "  /** All optional — default to the homepage CTA copy. */\n  eyebrow?: React.ReactNode;\n  title?: React.ReactNode;\n  body?: React.ReactNode;\n  supportText?: React.ReactNode;\n  /** Hide the secondary \"Request a Demo\" action. */\n  showSecondary?: boolean;",
+    "LocalCallout": "  /** Kicker line — defaults to \"Local-first\". */\n  eyebrow?: string;\n  title: React.ReactNode;\n  description?: React.ReactNode;\n  /** Bullet points shown as a checklist. */\n  points?: string[];\n  /** Extra content (e.g. a button) below the points. */\n  children?: React.ReactNode;\n  className?: string;",
+    "Container": "  /** Element/tag to render — defaults to \"div\". */\n  as?: React.ElementType;\n  /** Max content width — defaults to \"default\". */\n  size?: \"default\" | \"narrow\" | \"wide\";\n  className?: string;\n  children: React.ReactNode;",
+    "Logo": "  className?: string;\n  /** Light text for dark backgrounds — defaults to \"dark\". */\n  tone?: \"dark\" | \"light\";\n  /** Show the \"Harborline Systems\" wordmark — defaults to true. */\n  showWordmark?: boolean;",
+    "Reveal": "  children: React.ReactNode;\n  /** Stagger delay in seconds applied on reveal. */\n  delay?: number;\n  className?: string;",
+    "ThemeToggle": "  className?: string;",
+    "HeroSystemDiagram": "  className?: string;",
+    "ServiceAccordion": "  /** No props — renders the full Harborline services list. */",
+    "SiteHeader": "  /** No props — the site navigation header. */",
+    "SiteFooter": "  /** No props — the site footer. */",
+    "ContactForm": "  /** No props — the full contact form (posts to /api/contact). */",
+    "MobileCtaBar": "  /** No props — sticky mobile CTA bar (scroll-driven; appears past the hero). */"
+  },
+  "readmeHeader": ".design-sync/conventions.md"
+}
