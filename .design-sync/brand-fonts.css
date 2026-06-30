@@ -1,0 +1,12 @@
+/* Brand fonts for the design-sync bundle.
+   The site loads these via next/font/google and exposes them as CSS variables.
+   The design tool has no next/font, so we pull the same families from Google
+   Fonts and define the --font-sans / --font-display variables the components
+   reference through Tailwind's font-sans / font-display classes.
+   Kept at the TOP of the compiled stylesheet so the @import stays valid. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+:root {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
